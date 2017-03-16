@@ -43,10 +43,10 @@ public class InteractListener implements Listener {
 									String[] main = sign.getLine(1).split(":");
 									int mainA = Integer.parseInt(main[0]);
 									int meta = Integer.parseInt(main[1]);
-									item = new ItemStack(Material.getMaterial(mainA), 64, (short) meta);
+									item = new ItemStack(Material.getMaterial(mainA), 1, (short) meta);
 								} else {
 									int main = Integer.parseInt(sign.getLine(1));
-									item = new ItemStack(Material.getMaterial(main), 64);
+									item = new ItemStack(Material.getMaterial(main), 1);
 								}
 								Inventory inv = Bukkit.createInventory(player, 27, "Free");
 								int i = 0;

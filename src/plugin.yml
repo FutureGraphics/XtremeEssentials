@@ -1,11 +1,85 @@
-name: FutureEssentials
-version: 0.1
+name: Essentials
 author: FutureCode
-description: FutureEssentials by FutureCode
-website: FutureCode.me
-main: future.code.essentials.main.main
+version: 3.1
+description: Essentials coded By FutureCode
+main: essentials.future.code.main.main
 commands:
-  essentials:
-    description: Essentials command
   gm:
-    description: Gamemode Essentials command
+    description: /gamemode [Gamemode] <Spieler>
+    alias: [gamemode]
+  fly:
+    description: /fly <Spieler>
+  ban:
+    description: /ban <Spieler> [Grund]
+  mute:
+    description: /mute <Spieler> [Grund]
+  sethome:
+    description: /setgine [Namen]
+  home:
+    description: /home [Namen]
+  delhome:
+    description: /delhome [Namen]
+  spawn:
+    description: /spawn <Spieler>
+  setspawn:
+    description: /setspawn
+  setwarp:
+    description: /setwarp [Namen]
+  delwarp:
+    description: /delwarp [Namen]
+  warp:
+    description: /warp [Namen] <Spieler>
+  tpa:
+    description: /tpa <Spieler>
+  tpaccept:
+    description: /tpaccept
+  tpdeny:
+    description: /tpdeny
+  repair:
+    description: /repair [hand]
+  heal:
+    description: /heal <Spieler>
+  feed:
+    description: /feed <Spieler>
+  god:
+    description: /god <Spieler>
+  vanish:
+    description: /vanish <Spieler>
+  workbench:
+    description: /workbench <Spieler>
+  invsee:
+    description: /invsee <Spieler>
+  tempmute:
+    description: /tempmute <Spieler> [Zeit] [Grund]
+  tempban:
+    description: /tempban <Spieler> [Zeit] [Grund]
+  test:
+    description: /test
+  tphere:
+    description: /tphere <Spieler>
+  msg:
+    description: /msg <Spieler> [Nachricht]
+  unban:
+    description: /unban <Spieler>
+  unmute:
+    description: /unmute <Spieler>
+  money:
+    description: /money <Spieler>
+  skull:
+    description: /skull <Spieler>
+  essentials:
+    description: /essentials
+  regeneration:
+    description: /regeneration <Spieler>
+  hat:
+    description: /hat
+  pay:
+    description: /pay <Spieler> [Betrag]
+  afk:
+    description: /afk <Spieler>
+  nick:
+    description: /nick <Spieler> [off|namen]
+  enderchest:
+    description: /enderchest <Spieler>
+  eco:
+    description: /eco [set|add|remove] [Amount] <Spieler>

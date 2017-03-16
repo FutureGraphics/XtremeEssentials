@@ -26,11 +26,11 @@ import org.bukkit.scoreboard.ScoreboardManager;
 
 import essentials.future.code.mysql.MySQLPlayer;
 
-public class ApiManager extends JavaPlugin{
+public class ApiManager extends JavaPlugin {
 
 	public static Boolean takeAllEffectsFromPlayer(Player player) {
-		if(player.getActivePotionEffects() != null) {
-			for(PotionEffect effect : player.getActivePotionEffects()) {
+		if (player.getActivePotionEffects() != null) {
+			for (PotionEffect effect : player.getActivePotionEffects()) {
 				PotionEffectType effectType = effect.getType();
 				player.removePotionEffect(effectType);
 				return true;
@@ -40,45 +40,125 @@ public class ApiManager extends JavaPlugin{
 		}
 		return false;
 	}
-	
+
 	public static void repairArmorFromPlayer(Player player) {
-		if(player.getInventory().getChestplate() != null) {
+		if (player.getInventory().getChestplate() != null) {
 			ItemStack item = player.getInventory().getChestplate();
 			item.setDurability((short) 0);
 		}
-		if(player.getInventory().getHelmet() != null) {
+		if (player.getInventory().getHelmet() != null) {
 			ItemStack item = player.getInventory().getHelmet();
 			item.setDurability((short) 0);
 		}
-		if(player.getInventory().getLeggings() != null) {
+		if (player.getInventory().getLeggings() != null) {
 			ItemStack item = player.getInventory().getLeggings();
 			item.setDurability((short) 0);
 		}
-		if(player.getInventory().getBoots() != null) {
+		if (player.getInventory().getBoots() != null) {
 			ItemStack item = player.getInventory().getBoots();
 			item.setDurability((short) 0);
 		}
 	}
-	
+
 	public static Boolean killAllAnimalsInWorld(World world) {
-		if(world.getEntities() != null) {
-			for(Entity entity : world.getEntities()) {
+		if (world.getEntities() != null) {
+			for (Entity entity : world.getEntities()) {
 				entity.remove();
 				return true;
 			}
 		}
 		return false;
 	}
+
+	public static Boolean isBoot(Material material) {
+		List<Material> bootList = new ArrayList<Material>();
+		bootList.add(Material.LEATHER_BOOTS);
+		bootList.add(Material.GOLD_BOOTS);
+		bootList.add(Material.CHAINMAIL_BOOTS);
+		bootList.add(Material.IRON_BOOTS);
+		bootList.add(Material.DIAMOND_BOOTS);
+		if(bootList.contains(material)) {
+			return true;
+		}
+		return false;
+	}
 	
+	public static Boolean isLeggins(Material material) {
+		List<Material> leginsList = new ArrayList<Material>();
+		leginsList.add(Material.LEATHER_LEGGINGS);
+		leginsList.add(Material.GOLD_LEGGINGS);
+		leginsList.add(Material.CHAINMAIL_LEGGINGS);
+		leginsList.add(Material.IRON_LEGGINGS);
+		leginsList.add(Material.DIAMOND_LEGGINGS);
+		if(leginsList.contains(material)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static Boolean isChestplate(Material material) {
+		List<Material> chestPlateList = new ArrayList<Material>();
+		chestPlateList.add(Material.LEATHER_CHESTPLATE);
+		chestPlateList.add(Material.GOLD_CHESTPLATE);
+		chestPlateList.add(Material.CHAINMAIL_CHESTPLATE);
+		chestPlateList.add(Material.IRON_CHESTPLATE);
+		chestPlateList.add(Material.DIAMOND_CHESTPLATE);
+		if(chestPlateList.contains(material)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static Boolean isHelment(Material material) {
+		List<Material> helmentList = new ArrayList<Material>();
+		helmentList.add(Material.LEATHER_HELMET);
+		helmentList.add(Material.GOLD_HELMET);
+		helmentList.add(Material.CHAINMAIL_HELMET);
+		helmentList.add(Material.IRON_HELMET);
+		helmentList.add(Material.DIAMOND_HELMET);
+		if(helmentList.contains(material)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static Boolean isArmor(Material material) {
+		List<Material> armorList = new ArrayList<Material>();
+		armorList.add(Material.LEATHER_BOOTS);
+		armorList.add(Material.LEATHER_LEGGINGS);
+		armorList.add(Material.LEATHER_CHESTPLATE);
+		armorList.add(Material.LEATHER_HELMET);
+		armorList.add(Material.GOLD_HELMET);
+		armorList.add(Material.GOLD_CHESTPLATE);
+		armorList.add(Material.GOLD_LEGGINGS);
+		armorList.add(Material.GOLD_BOOTS);
+		armorList.add(Material.CHAINMAIL_BOOTS);
+		armorList.add(Material.CHAINMAIL_LEGGINGS);
+		armorList.add(Material.CHAINMAIL_CHESTPLATE);
+		armorList.add(Material.CHAINMAIL_HELMET);
+		armorList.add(Material.IRON_HELMET);
+		armorList.add(Material.IRON_CHESTPLATE);
+		armorList.add(Material.IRON_LEGGINGS);
+		armorList.add(Material.IRON_BOOTS);
+		armorList.add(Material.DIAMOND_HELMET);
+		armorList.add(Material.DIAMOND_CHESTPLATE);
+		armorList.add(Material.DIAMOND_LEGGINGS);
+		armorList.add(Material.DIAMOND_BOOTS);
+		if (armorList.contains(material)) {
+			return true;
+		}
+		return false;
+	}
+
 	public static Boolean healPlayer(Player player) {
 		player.setFoodLevel(20);
 		player.setHealth(20);
 		takeAllEffectsFromPlayer(player);
 		return true;
 	}
-	
+
 	public static Boolean clearAllFromPlayer(Player player) {
-		if(player.getInventory().getContents() != null) {
+		if (player.getInventory().getContents() != null) {
 			player.getInventory().clear();
 			player.getInventory().setHelmet(null);
 			player.getInventory().setChestplate(null);
@@ -89,86 +169,89 @@ public class ApiManager extends JavaPlugin{
 			return false;
 		}
 	}
-	
-	public static ItemStack createItem(Material material, String name, int amount, int metaitem,Enchantment enchantment, int enchantmentLvL, ItemFlag itemFlag, String... lore) {
+
+	public static ItemStack createItem(Material material, String name, int amount, int metaitem,
+			Enchantment enchantment, int enchantmentLvL, ItemFlag itemFlag, String... lore) {
 		ItemStack item = new ItemStack(material, amount, (short) metaitem);
 		ItemMeta meta = item.getItemMeta();
-		if(name != null) {
+		if (name != null) {
 			meta.setDisplayName(name);
 		}
-		if(enchantment != null || enchantmentLvL != 0) {
+		if (enchantment != null || enchantmentLvL != 0) {
 			meta.addEnchant(enchantment, enchantmentLvL, true);
 		}
-		if(lore != null) {
+		if (lore != null) {
 			List<String> loreList = new ArrayList<>();
-			for(String text : lore) {
+			for (String text : lore) {
 				loreList.add(text);
 			}
 			meta.setLore(loreList);
 		}
-		if(itemFlag != null) {
+		if (itemFlag != null) {
 			meta.addItemFlags(itemFlag);
 		}
 		item.setItemMeta(meta);
 		return item;
 	}
-	
-	public static ItemStack createSkull(String owner, String name, int amount, Enchantment enchantment, int enchantmentLvL, ItemFlag itemFlag, String... lore) {
+
+	public static ItemStack createSkull(String owner, String name, int amount, Enchantment enchantment,
+			int enchantmentLvL, ItemFlag itemFlag, String... lore) {
 		ItemStack item = new ItemStack(Material.SKULL_ITEM, amount);
 		SkullMeta meta = (SkullMeta) item.getItemMeta();
 		item.setDurability((short) 3);
-		if(owner != null) {
+		if (owner != null) {
 			meta.setOwner(owner);
 		}
-		if(name != null) {
+		if (name != null) {
 			meta.setDisplayName(name);
 		}
-		if(enchantment != null && enchantmentLvL != 0) {
+		if (enchantment != null && enchantmentLvL != 0) {
 			meta.addEnchant(enchantment, enchantmentLvL, true);
 		}
-		if(itemFlag != null) {
+		if (itemFlag != null) {
 			meta.addItemFlags(itemFlag);
 		}
-		if(lore != null) {
+		if (lore != null) {
 			List<String> loreList = new ArrayList<>();
-			for(String text : lore) {
+			for (String text : lore) {
 				loreList.add(text);
 			}
 			meta.setLore(loreList);
 		}
-		if(itemFlag != null) {
+		if (itemFlag != null) {
 			meta.addItemFlags(itemFlag);
 		}
 		item.setItemMeta(meta);
 		return item;
 	}
-	
-	public static ItemStack createLetherArmor(Material material, String name, int amount, int metaItem, Color color , Enchantment enchantment, int enchantmentLvL, ItemFlag itemFlag, String... lore) {
+
+	public static ItemStack createLetherArmor(Material material, String name, int amount, int metaItem, Color color,
+			Enchantment enchantment, int enchantmentLvL, ItemFlag itemFlag, String... lore) {
 		ItemStack item = new ItemStack(material, amount, (short) metaItem);
 		LeatherArmorMeta meta = (LeatherArmorMeta) item.getItemMeta();
-		if(name != null) {
+		if (name != null) {
 			meta.setDisplayName(name);
 		}
-		if(enchantment != null || enchantmentLvL != 0) {
+		if (enchantment != null || enchantmentLvL != 0) {
 			meta.addEnchant(enchantment, enchantmentLvL, true);
 		}
-		if(color != null) {
+		if (color != null) {
 			meta.setColor(color);
 		}
-		if(lore != null) {
+		if (lore != null) {
 			List<String> loreList = new ArrayList<>();
-			for(String text : lore) {
+			for (String text : lore) {
 				loreList.add(text);
 			}
 			meta.setLore(loreList);
 		}
-		if(itemFlag != null) {
+		if (itemFlag != null) {
 			meta.addItemFlags(itemFlag);
 		}
 		item.setItemMeta(meta);
 		return item;
 	}
-	
+
 	public static List<String> getAddList() {
 		List<String> list = new ArrayList<String>();
 		list.add("de");
@@ -180,35 +263,34 @@ public class ApiManager extends JavaPlugin{
 		list.add("eu");
 		return list;
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	public static Scoreboard createScoreboard(Player player,String displayname, List<String> lines) {
+	public static Scoreboard createScoreboard(Player player, String displayname, List<String> lines) {
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
 		Scoreboard board = manager.getNewScoreboard();
 		Objective obj = board.registerNewObjective("test", "dummy");
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 		obj.setDisplayName(displayname);
 		int i = 0;
-		for(String textLines : lines) {
+		for (String textLines : lines) {
 			textLines = textLines.replace("&", "§");
 			textLines = textLines.replace("%server%", ConfigManager.getServerName());
 			textLines = textLines.replace("%player%", player.getName());
 			textLines = textLines.replace("%kills%", Integer.toString(MySQLPlayer.getKills(player.getUniqueId())));
 			textLines = textLines.replace("%deaths%", Integer.toString(MySQLPlayer.getDeaths(player.getUniqueId())));
-			textLines = textLines.replace("%coins%", Integer.toString(MySQLPlayer.getCoins(player.getUniqueId().toString())));
+			textLines = textLines.replace("%coins%",
+					Integer.toString(MySQLPlayer.getCoins(player.getUniqueId().toString())));
 			textLines = textLines.replace("%rang%", MySQLPlayer.getGroupFromPlayer(player.getUniqueId().toString()));
-			if(textLines != null) {
+			if (textLines != null) {
 				Score score = obj.getScore(Bukkit.getOfflinePlayer(textLines));
 				score.setScore(i);
 				i++;
 			}
 		}
-		
+
 		return board;
 	}
-	
 
-	
 	public static int getItemAmount(Material material, Player player) {
 		int amount = 0;
 		ItemStack item = null;
@@ -243,7 +325,7 @@ public class ApiManager extends JavaPlugin{
 			}
 		}
 	}
-	
+
 	public static boolean isInventoryFull(Player player) {
 		int empty = -1;
 		empty = player.getInventory().firstEmpty();
@@ -253,7 +335,5 @@ public class ApiManager extends JavaPlugin{
 			return true;
 		}
 	}
-	
 
-	
 }

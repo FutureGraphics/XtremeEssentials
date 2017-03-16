@@ -13,9 +13,6 @@ import essentials.future.code.ConfigManager.ConfigManager;
 import essentials.future.code.ConfigManager.PlayerManager;
 import essentials.future.code.main.main;
 import essentials.future.code.mysql.MySQLPlayer;
-import ru.tehkode.permissions.PermissionGroup;
-import ru.tehkode.permissions.PermissionUser;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class JoinListener implements Listener {
 

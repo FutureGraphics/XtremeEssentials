@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 
+import essentials.future.code.Commands.AfkCommand;
 import essentials.future.code.Commands.BanCommand;
 import essentials.future.code.Commands.DelHomeCommand;
 import essentials.future.code.Commands.DelWarpCommand;
@@ -32,6 +33,7 @@ import essentials.future.code.Commands.MoneyCommand;
 import essentials.future.code.Commands.MsgCommand;
 import essentials.future.code.Commands.MuteCommand;
 import essentials.future.code.Commands.NickCommand;
+import essentials.future.code.Commands.PayCommand;
 import essentials.future.code.Commands.RegenerationCommand;
 import essentials.future.code.Commands.RepairCommand;
 import essentials.future.code.Commands.SetHomeCommand;
@@ -131,6 +133,8 @@ public class main extends JavaPlugin {
 	private EnderchestCommand enderchestCommand;
 	private HatCommand hatCommand;
 	private NickCommand nickCommand;
+	private PayCommand payCommand;
+	private AfkCommand afkCommand;
 	//private KitCommand kitCommand;
 	
 	@Override
@@ -352,6 +356,11 @@ public class main extends JavaPlugin {
 		nickCommand = new NickCommand(this);
 		getCommand("nick").setExecutor(nickCommand);
 		
+		payCommand = new PayCommand(this);
+		getCommand("pay").setExecutor(payCommand);
+		
+		afkCommand = new AfkCommand(this);
+		getCommand("akf").setExecutor(afkCommand);
 	}
 
 	public void connectionScheduler() {
@@ -391,6 +400,10 @@ public class main extends JavaPlugin {
 	}
 
 	//Geter | Setter
+	
+	public PayCommand getPayCommand() {
+		return payCommand;
+	}
 	
 	public HatCommand getHatCommand() {
 		return hatCommand;
